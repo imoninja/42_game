@@ -17,7 +17,7 @@ public class CalcSumSystem : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        CalcNumText = CalcText.GetComponent<Text>();
     }
 
     // Update is called once per frame
@@ -31,8 +31,6 @@ public class CalcSumSystem : MonoBehaviour
             timer = 0;
         }
 
-
-        CalcNumText = CalcText.GetComponent<Text>();
         NumSum = 0;
 
         //onClickTileタグに入ってたらonClickTileタグの中身を見に行く

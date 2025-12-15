@@ -19,13 +19,12 @@ public class CalcSystem : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        CalcNumText = CalcText.GetComponent<Text>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        CalcNumText = CalcText.GetComponent<Text>();
 
         //onClickTileタグに何も入ってなかったらデフォルトの文字が入るようにする。
         timer += Time.deltaTime;

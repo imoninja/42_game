@@ -20,7 +20,7 @@ public class PointGetManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        TileArea = GameObject.Find("TileArea");
     }
 
     // Update is called once per frame
@@ -87,7 +87,6 @@ public class PointGetManager : MonoBehaviour
 
     public void MakeTile()
     {
-        TileArea = GameObject.Find("TileArea");
         // ResourcesフォルダにあるTileプレハブをGameObject型で取得
         GameObject prefab = (GameObject)Resources.Load("Tile");
         // Tileプレハブを元に、インスタンスを生成

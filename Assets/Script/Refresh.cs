@@ -9,6 +9,11 @@ public class Refresh : MonoBehaviour
 {
     GameObject TileArea;
 
+    void Start()
+    {
+        TileArea = GameObject.Find("TileArea");
+    }
+
     // Start is called before the first frame update
     public void MypointerDownUI()
     {
@@ -50,7 +55,6 @@ public class Refresh : MonoBehaviour
 
     public void MakeTile()
     {
-        TileArea = GameObject.Find("TileArea");
         // ResourcesフォルダにあるTileプレハブをGameObject型で取得
         GameObject prefab = (GameObject)Resources.Load("Tile");
         // Tileプレハブを元に、インスタンスを生成

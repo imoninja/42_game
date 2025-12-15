@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.Collections;
 using NCMB;
 
@@ -31,7 +32,7 @@ public class Logout : MonoBehaviour
 				UnityEngine.Debug.Log ("ログアウトに失敗: " + e.ErrorMessage);
 			} else {
 				UnityEngine.Debug.Log ("ログアウトに成功");
-				Application.LoadLevel ("Loginsignin");
+				SceneManager.LoadScene ("Loginsignin");
 			}
 		});
 

@@ -7,12 +7,13 @@ using UnityEngine.UI;
 public class ScoreManager : MonoBehaviour
 {
     public GameObject ScoreObject = null; //オブジェクトのテキスト取得用 初期値はnull
+    Text ScoreText; //キャッシュ用
 
     // Start is called before the first frame update
     //初期化
     void Start()
     {
-
+        ScoreText = ScoreObject.GetComponent<Text>();
     }
 
     // Update is called once per frame
@@ -27,8 +28,6 @@ public class ScoreManager : MonoBehaviour
 
     void Score()
     {
-        //オブジェクトからtxtコンポーネントを取得
-        Text ScoreText = ScoreObject.GetComponent<Text>();
         // テキストの表示入換
         //int型をstring型へ
         string ScoreCharacter = PointGetManager.TotalScore.ToString();

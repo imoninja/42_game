@@ -12,9 +12,10 @@ public class LineUp : MonoBehaviour
 
     void Start()
     {
+        TileArea = GameObject.Find("TileArea");
+
         for (int TileNum = 0 ; TileNum < 36 ; TileNum++ )
         {
-            TileArea = GameObject.Find("TileArea");
             // ResourcesフォルダにあるTileプレハブをGameObject型で取得
             GameObject prefab = (GameObject)Resources.Load("Tile");
             // Tileプレハブを元に、インスタンスを生成
