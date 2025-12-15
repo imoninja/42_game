@@ -50,14 +50,14 @@
 - 新しすぎて安定性が未知数
 - アセットの互換性問題の可能性
 
-## 推奨: Unity 2021.3.x LTS
+## 推奨: Unity 2022.3.x LTS（現在の最新LTS）
 
 理由:
-1. ✅ 安定性が高い
-2. ✅ 2020からの移行が簡単
-3. ✅ UGSが完全サポート
-4. ✅ アセット互換性が高い
-5. ✅ 情報が豊富
+1. ✅ 最新のLTSバージョン（長期サポート）
+2. ✅ 2020からの移行も安定している
+3. ✅ UGSがネイティブサポート
+4. ✅ パフォーマンスが大幅向上
+5. ✅ サポート期限が最も長い（2025年まで）
 
 ## アップグレード手順
 
@@ -75,12 +75,13 @@ git push
 C:\Unity_Project\AtA_after → C:\Unity_Project\AtA_after_backup
 ```
 
-### 2. Unity Hub で Unity 2021.3.x をインストール
+### 2. Unity 2022.3.21f1 を使用（既にインストール済み）
 
+既に Unity 2022.3.21f1 がインストールされているので、新規インストールは不要です。
+
+確認方法:
 1. Unity Hub を起動
-2. 「Installs」タブをクリック
-3. 「Install Editor」をクリック
-4. 「LTS」タブから **Unity 2021.3.x** を選択（最新のパッチバージョン）
+2. 「Installs」タブで Unity 2022.3.21f1 が表示されているか確認
 5. モジュールを選択:
    - ✅ Visual Studio (または既存のIDEを使用)
    - ✅ Android Build Support (モバイルビルド用)
@@ -91,11 +92,11 @@ C:\Unity_Project\AtA_after → C:\Unity_Project\AtA_after_backup
    - ✅ Documentation (オフラインドキュメント)
 6. 「Install」をクリック
 
-### 3. プロジェクトを Unity 2021.3 で開く
+### 3. プロジェクトを Unity 2022.3.21f1 で開く
 
 1. Unity Hub の「Projects」タブ
 2. プロジェクトの右側の「...」メニュー
-3. 「Open with」→ Unity 2021.3.x を選択
+3. 「Open with」→ **Unity 2022.3.21f1** を選択
 4. 初回起動時に警告が出ます:
    ```
    "This project was created with an older version of Unity..."
@@ -171,7 +172,7 @@ m_EditorVersionWithRevision: 2021.3.xx (ハッシュ)
 
 ### 9. UGS パッケージのインストール
 
-Unity 2021では Package Manager から直接インストール:
+Unity 2022では Package Manager から直接インストール:
 1. `Window` → `Package Manager`
 2. 左上のドロップダウンで「Unity Registry」を選択
 3. 以下をインストール:
@@ -192,9 +193,9 @@ UNITY_SERVICES_ENABLED
 
 ```bash
 git add .
-git commit -m "Upgrade Unity from 2020.3.17f1 to 2021.3.x LTS
+git commit -m "Upgrade Unity from 2020.3.17f1 to 2022.3.21f1 LTS
 
-- Update ProjectVersion to 2021.3.x
+- Update ProjectVersion to 2022.3.21f1
 - Reimport all assets
 - Install UGS packages (Authentication, Leaderboards)
 - Add UNITY_SERVICES_ENABLED define symbol
@@ -258,7 +259,6 @@ Unity Hub から Unity 2020.3.17f1 を再インストール
 
 ## 推奨事項
 
-1. **まず Unity 2021.3 LTS にアップグレード**
+1. **Unity 2022.3.21f1 LTS を使用**（既にインストール済み）
 2. 安定動作を確認
-3. 将来的に Unity 2022 LTS への移行を検討
-4. Unity 6 は情報を待ってから判断
+3. 将来的に Unity 6 LTS への移行を検討（2025年以降）
