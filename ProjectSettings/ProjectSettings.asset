@@ -160,7 +160,8 @@ PlayerSettings:
   resetResolutionOnWindowResize: 0
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
-  applicationIdentifier: {}
+  applicationIdentifier:
+    Standalone: com.imoninja.AtA
   buildNumber:
     Standalone: 0
     VisionOS: 0
@@ -789,9 +790,10 @@ PlayerSettings:
   webGLPowerPreference: 2
   scriptingDefineSymbols:
     1: UNITY_SERVICES_ENABLED
-    7: UNITY_SERVICES_ENABLED
     13: UNITY_SERVICES_ENABLED
     19: UNITY_SERVICES_ENABLED
+    7: UNITY_SERVICES_ENABLED
+    Standalone: UNITY_SERVICES_ENABLED
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend: {}
@@ -900,11 +902,11 @@ PlayerSettings:
   apiCompatibilityLevel: 6
   activeInputHandler: 0
   windowsGamepadBackendHint: 0
-  cloudProjectId: 
+  cloudProjectId: 0de2e9ac-0c5f-4dce-981c-466eef4668cf
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: 
-  organizationId: 
+  projectName: 42-game
+  organizationId: shinpei-higuma
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   hmiLoadingImage: {fileID: 0}

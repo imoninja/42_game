@@ -1,264 +1,220 @@
-# Unity バージョンアップグレードガイド
+# Unity 2022.3.21f1 LTS アップグレードガイド
 
-## 現在のバージョン
-- Unity 2020.3.17f1 (LTS)
+このプロジェクトは Unity 2020.3.17f1 から Unity 2022.3.21f1 LTS にアップグレードされました。
 
-## 推奨アップグレード先
+## アップグレード完了内容
 
-### オプション1: Unity 2021 LTS（推奨）
-- **バージョン**: Unity 2021.3.x (最新のLTS)
-- **リリース**: 2022年4月
-- **サポート終了**: 2024年5月まで
+### ✅ 実施済みの作業
 
-**メリット:**
-- 安定したLTSバージョン
-- 2020からの移行が比較的スムーズ
-- UGS統合が改善されている
-- パフォーマンス向上
+1. **Unity バージョンアップグレード**
+   - Unity 2020.3.17f1 → Unity 2022.3.21f1 LTS
 
-**互換性:**
-- ほぼすべてのアセットが動作する
-- TextMeshProが標準パッケージに
-- 大きな破壊的変更は少ない
+2. **2D パッケージの更新**
+   - 2D Animation: 5.0.6 → 9.0.x
+   - 2D PSD Importer: 4.1.0 → 8.0.x
+   - 2D Common: 自動更新
 
-### オプション2: Unity 2022 LTS
-- **バージョン**: Unity 2022.3.x (現在のLTS)
-- **リリース**: 2023年6月
-- **サポート終了**: 2025年6月まで
+3. **Unity Gaming Services (UGS) の統合**
+   - Authentication パッケージ: インストール済み
+   - Leaderboards パッケージ: インストール済み
+   - Services Core: 自動インストール済み
 
-**メリット:**
-- 最新のLTS版
-- 長期サポート
-- 最新機能が使える
-- UGSネイティブサポート
+4. **プロジェクト設定**
+   - Scripting Define Symbol に `UNITY_SERVICES_ENABLED` を追加
+   - すべてのプラットフォーム（Standalone, iOS, Android, WebGL）に適用済み
 
-**注意点:**
-- アセットの互換性確認が必要
-- 一部APIが変更されている可能性
+5. **動作確認**
+   - タイトル画面: ✅ 正常動作
+   - ゲームプレイ: ✅ 正常動作
+   - リザルト画面: ✅ 正常動作
+   - オンラインランキング送信: ✅ 正常動作
+   - Unity Dashboard でスコア確認: ✅ 確認済み
 
-### オプション3: Unity 6 (旧2023 LTS)
-- **バージョン**: Unity 6.0.x
-- **リリース**: 2024年10月
-- **サポート終了**: 2026年まで
+## Unity Gaming Services セットアップ状況
 
-**メリット:**
-- 最新版
-- Unity 6へのリブランディング
-- 最高のパフォーマンス
+### ✅ 完了済み
 
-**注意点:**
-- 新しすぎて安定性が未知数
-- アセットの互換性問題の可能性
+- Unity Dashboard でプロジェクト作成
+- Leaderboard ID: `42_game_highscore` 作成済み
+- Leaderboard 設定:
+  - Sort Order: Highest to lowest（降順）
+  - Update Strategy: Best score（最高スコアを保持）
+  - Tiers: なし
+- Unity エディタでプロジェクトIDリンク完了
+- テストスコア送信成功（86400点）
 
-## 推奨: Unity 2022.3.x LTS（現在の最新LTS）
+## プロジェクトで使用中のバージョン
 
-理由:
-1. ✅ 最新のLTSバージョン（長期サポート）
-2. ✅ 2020からの移行も安定している
-3. ✅ UGSがネイティブサポート
-4. ✅ パフォーマンスが大幅向上
-5. ✅ サポート期限が最も長い（2025年まで）
+- **Unity**: 2022.3.21f1 LTS
+- **パッケージ**:
+  - Authentication: 3.5.2
+  - Leaderboards: 2.3.3
+  - Services Core: 1.x
+  - 2D Animation: 9.x
+  - 2D PSD Importer: 8.x
 
-## アップグレード手順
+## 新規開発者向けセットアップ手順
 
-### 1. バックアップを作成（重要！）
+このプロジェクトを初めて開く場合:
 
-#### Gitでコミット
-```bash
-git add .
-git commit -m "Backup before Unity upgrade to 2021 LTS"
-git push
-```
+### 1. Unity のインストール
 
-#### プロジェクトフォルダをコピー（推奨）
-```
-C:\Unity_Project\AtA_after → C:\Unity_Project\AtA_after_backup
-```
+1. Unity Hub をインストール
+2. Unity 2022.3.21f1 をインストール
+3. 必要なモジュール:
+   - WebGL Build Support（推奨）
+   - Android Build Support（モバイル向け）
+   - iOS Build Support（モバイル向け）
 
-### 2. Unity 2022.3.21f1 を使用（既にインストール済み）
-
-既に Unity 2022.3.21f1 がインストールされているので、新規インストールは不要です。
-
-確認方法:
-1. Unity Hub を起動
-2. 「Installs」タブで Unity 2022.3.21f1 が表示されているか確認
-5. モジュールを選択:
-   - ✅ Visual Studio (または既存のIDEを使用)
-   - ✅ Android Build Support (モバイルビルド用)
-     - Android SDK & NDK Tools
-     - OpenJDK
-   - ✅ iOS Build Support (iOSビルド用)
-   - ✅ WebGL Build Support
-   - ✅ Documentation (オフラインドキュメント)
-6. 「Install」をクリック
-
-### 3. プロジェクトを Unity 2022.3.21f1 で開く
+### 2. プロジェクトを開く
 
 1. Unity Hub の「Projects」タブ
-2. プロジェクトの右側の「...」メニュー
-3. 「Open with」→ **Unity 2022.3.21f1** を選択
-4. 初回起動時に警告が出ます:
-   ```
-   "This project was created with an older version of Unity..."
-   ```
-   → 「Continue」をクリック
+2. 「Add」→ プロジェクトフォルダを選択
+3. Unity 2022.3.21f1 で開く
+4. 初回起動時にアセットのインポート（5〜15分）
 
-### 4. アップグレードプロセス
+### 3. Unity Gaming Services の設定確認
 
-Unity が自動的に以下を実行します:
-- プロジェクト設定の更新
-- アセットの再インポート（時間がかかります）
-- スクリプトの再コンパイル
+**Scripting Define Symbol の確認:**
+1. `Edit` → `Project Settings` → `Player` → `Other Settings`
+2. `Scripting Define Symbols` に `UNITY_SERVICES_ENABLED` があることを確認
 
-**注意**: 初回起動は5〜15分かかる場合があります。
+**プロジェクトIDの確認:**
+1. `Edit` → `Project Settings` → `Services`
+2. プロジェクトがリンク済みか確認
+3. 未リンクの場合は、Unity Dashboard でプロジェクトを作成してリンク
 
-### 5. エラーチェック
+### 4. テストプレイ
 
-Unity Editorが開いたら:
-
-#### Consoleを確認
-- `Window` → `General` → `Console`
-- エラー（赤）や警告（黄）を確認
-
-#### 主な互換性問題と修正
-
-##### 問題1: TextMeshPro パッケージエラー
-```
-TextMeshPro is not installed
-```
-**解決策:**
-- `Window` → `Package Manager`
-- 「TextMeshPro」を検索してインストール
-
-##### 問題2: 非推奨API警告
-```
-'GUIText' is obsolete
-```
-**解決策:**
-- このプロジェクトでは使用していないので無視してOK
-
-##### 問題3: アセンブリ定義エラー
-**解決策:**
-- `Assets` → `Reimport All`
-
-### 6. プロジェクトバージョンファイルの確認
-
-以下のファイルが自動更新されます:
-```
-ProjectSettings/ProjectVersion.txt
-```
-
-内容確認:
-```
-m_EditorVersion: 2021.3.xx
-m_EditorVersionWithRevision: 2021.3.xx (ハッシュ)
-```
-
-### 7. テストプレイ
-
-1. Mainシーンを開く
-2. Playボタンを押してゲームをテスト
-3. すべての機能が動作するか確認:
-   - タイル生成
-   - 選択
-   - スコア計算
-   - シーン遷移
-
-### 8. ビルド設定の確認
-
-`File` → `Build Settings`:
-- Platform設定を確認
-- 必要に応じてSwitch Platform
-
-### 9. UGS パッケージのインストール
-
-Unity 2022では Package Manager から直接インストール:
-1. `Window` → `Package Manager`
-2. 左上のドロップダウンで「Unity Registry」を選択
-3. 以下をインストール:
-   - ✅ Authentication
-   - ✅ Leaderboards
-   - ✅ Core (自動)
-
-### 10. Scripting Define Symbol の追加
-
-`Edit` → `Project Settings` → `Player` → `Other Settings`:
-
-Scripting Define Symbols に追加:
-```
-UNITY_SERVICES_ENABLED
-```
-
-### 11. 変更をコミット
-
-```bash
-git add .
-git commit -m "Upgrade Unity from 2020.3.17f1 to 2022.3.21f1 LTS
-
-- Update ProjectVersion to 2022.3.21f1
-- Reimport all assets
-- Install UGS packages (Authentication, Leaderboards)
-- Add UNITY_SERVICES_ENABLED define symbol
-- Verify all game functionality
-
-🤖 Generated with [Claude Code](https://claude.com/claude-code)
-
-Co-Authored-By: Claude <noreply@anthropic.com>"
-git push
-```
+1. シーンを開く: `Assets/Scenes/` から任意のシーンを開く
+2. Play ボタンを押してゲームをテスト
+3. Console でエラーがないか確認（`Window` → `General` → `Console`）
 
 ## トラブルシューティング
 
-### アップグレード後にエディタが開かない
-1. プロジェクトフォルダの `Library` フォルダを削除
-2. 再度プロジェクトを開く（再インポートが始まる）
+### コンパイルエラー: "UGS not available"
 
-### コンパイルエラーが大量に出る
-1. `Assets` → `Reimport All`
-2. `Edit` → `Preferences` → `External Tools` でIDEを再設定
+**原因:** `UNITY_SERVICES_ENABLED` シンボルが設定されていない
 
-### シーンが真っ黒
-1. `Window` → `Rendering` → `Lighting`
-2. 「Generate Lighting」をクリック
+**解決方法:**
+1. Unity エディタを完全に閉じる
+2. `Edit` → `Project Settings` → `Player` → `Other Settings`
+3. `Scripting Define Symbols` に `UNITY_SERVICES_ENABLED` を追加
+4. Enter キーを押して Apply
+5. Unity エディタを再起動
 
-### アセットが表示されない
-1. Package Managerですべてのパッケージを最新に更新
-2. エディタを再起動
+### Safe Mode で起動してしまう
+
+**原因:** 2D パッケージのバージョン不一致
+
+**解決方法:**
+1. Safe Mode ダイアログで「Ignore」をクリック
+2. `Window` → `Package Manager`
+3. 左上を「Packages: In Project」に変更
+4. 2D Animation と 2D PSD Importer を最新版に更新
+5. Unity エディタを再起動
+
+### Library フォルダの再構築が必要な場合
+
+**手順:**
+1. Unity エディタを完全に閉じる
+2. プロジェクトフォルダの `Library` フォルダを削除
+3. Unity エディタで再度プロジェクトを開く
+4. アセットの再インポートが自動的に始まる（5〜15分）
+
+## Unity Gaming Services の使い方
+
+### スコアをオンラインランキングに送信
+
+コードは既に実装済み。ゲームをプレイして Result 画面に到達すると自動的に送信されます。
+
+### ランキングの確認
+
+1. [Unity Dashboard](https://dashboard.unity3d.com/) にアクセス
+2. プロジェクトを選択
+3. `Leaderboards` → `42 Game High Score` → `Entries` タブ
+4. 送信されたスコアが表示される
+
+### 認証について
+
+現在は**匿名認証**を使用しています:
+- プレイヤーは自動的に匿名IDで認証される
+- デバイスごとに異なるIDが生成される
+- アカウント登録不要
+
+## アップグレード時に発生した問題と解決方法
+
+### 問題1: 2D パッケージのバージョン不一致
+
+**エラー:**
+```
+Library\PackageCache\com.unity.2d.psdimporter@4.1.0\Editor\PSDImporterEditor.cs(19,62): error CS0535
+```
+
+**解決方法:**
+- Package Manager で 2D Animation と 2D PSD Importer を Unity 2022.3 互換バージョンに更新
+
+### 問題2: Library フォルダのロック
+
+**エラー:**
+```
+rm: cannot remove 'Library/ArtifactDB': Device or resource busy
+```
+
+**解決方法:**
+- Unity エディタを完全に閉じてから Library フォルダを削除
+
+### 問題3: UNITY_SERVICES_ENABLED が認識されない
+
+**エラー:**
+```
+UGS not available. Score not submitted.
+```
+
+**解決方法:**
+- ProjectSettings.asset を手動編集して Scripting Define Symbol を追加
+- Unity エディタを再起動
 
 ## 検証チェックリスト
 
-アップグレード後に確認:
-- [ ] プロジェクトがエラーなく開く
-- [ ] Consoleにエラーがない（警告は許容）
-- [ ] Mainシーンが正常にロード
-- [ ] ゲームが正常にプレイできる
-- [ ] タイル生成が正常
-- [ ] スコア計算が正常
-- [ ] シーン遷移が正常
-- [ ] UGSパッケージがインストール済み
-- [ ] ビルドが成功する
+アップグレード後の確認事項:
+- [x] プロジェクトがエラーなく開く
+- [x] Console にコンパイルエラーがない
+- [x] ゲームが正常にプレイできる
+- [x] タイトル画面が表示される
+- [x] ゲームプレイが正常に動作
+- [x] スコア計算が正常
+- [x] リザルト画面が表示される
+- [x] UGS が初期化される
+- [x] 匿名認証が成功する
+- [x] スコアがオンラインランキングに送信される
+- [x] Unity Dashboard でスコアを確認できる
 
-## 元に戻す方法（問題が発生した場合）
+## 参考ファイル
 
-### 方法1: Gitから復元
-```bash
-git reset --hard HEAD~1
-```
+- **UGS セットアップガイド**: [UGS_SETUP.md](UGS_SETUP.md)
+- **マイグレーションノート**: [MIGRATION_NOTES.md](MIGRATION_NOTES.md)
+- **UGS マネージャー**: [Assets/Script/UGSLeaderboardManager.cs](Assets/Script/UGSLeaderboardManager.cs)
+- **リザルトマネージャー**: [Assets/Script/ResultManager.cs](Assets/Script/ResultManager.cs)
 
-### 方法2: バックアップから復元
-バックアップフォルダをコピーして元に戻す
+## 今後の推奨事項
 
-### 方法3: Unity 2020.3を再インストール
-Unity Hub から Unity 2020.3.17f1 を再インストール
+1. **ビルドテスト**
+   - WebGL ビルドの動作確認
+   - モバイル（Android/iOS）ビルドの動作確認
+
+2. **UI の改善（任意）**
+   - LeaderboardUI.cs を使ってゲーム内でランキング表示
+   - ランキング表示画面をシーンに追加
+
+3. **将来のアップグレード**
+   - Unity 2022.3 LTS のサポート期限: 2025年6月
+   - 2025年以降に Unity 6 LTS への移行を検討
 
 ## 参考リンク
 
-- [Unity 2021.3 LTS リリースノート](https://unity.com/releases/editor/whats-new/2021.3.0)
+- [Unity 2022.3 LTS リリースノート](https://unity.com/releases/editor/whats-new/2022.3.0)
 - [Unity アップグレードガイド](https://docs.unity3d.com/Manual/UpgradeGuides.html)
 - [Unity Gaming Services ドキュメント](https://docs.unity.com/ugs/)
-
-## 推奨事項
-
-1. **Unity 2022.3.21f1 LTS を使用**（既にインストール済み）
-2. 安定動作を確認
-3. 将来的に Unity 6 LTS への移行を検討（2025年以降）
+- [Unity Leaderboards API](https://docs.unity.com/ugs/manual/leaderboards/manual/overview)
+- [Unity Authentication API](https://docs.unity.com/ugs/manual/authentication/manual/intro-unity-authentication)
